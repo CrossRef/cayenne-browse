@@ -1,0 +1,146 @@
+{% extends "templates/layout.html" %}
+
+{% block lead %}
+<h1 class="text-center">{{member.primary-name}}</h1>
+
+<ul class="list-inline text-center">
+  <li>DOIs {{member.counts.total-dois|number-format:%,d}}</li>
+  <li>Prefixes {{member.prefix|length}}</li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2">
+    <div class="thumbnail">
+      <img src="{{member.primary-name|member-logo-url}}"/>
+    </div>
+    <dl>
+      <dt>N</dt>
+      <dd>
+	<a href="https://api.crossref.org/members/{{member.id}}">
+	  {{member.id}}
+	</a>
+      </dd>
+      <dt>A</dt>
+      <dd>
+	<a href="https://www.google.com/maps/search/{{member.location}}">
+	  {{member.location}}
+	</a>
+      </dd>
+    </dl>
+  </div>
+  <div class="col-md-10">
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" class="active">
+	  <a href="#dois" aria-controls="dois" role="tab"
+	     data-toggle="tab">
+	    DOIs
+	  </a>
+	</li>
+	<li role="presentation">
+	  <a href="#coverage" aria-controls="coverage" role="tab"
+	     data-toggle="tab">
+	    Coverage
+	  </a>
+	</li>
+	<li role="presentation">
+	  <a href="#prefixes" aria-controls="prefixes" role="tab"
+	     data-toggle="tab">
+	    Prefixes
+	  </a>
+	</li>
+	<li role="presentation">
+	  <a href="#funding" aria-controls="funding" role="tab"
+	     data-toggle="tab">
+	    Funding Sources
+	  </a>
+	</li>
+	<li role="presentation">
+	  <a href="#updates" aria-controls="updates" role="tab"
+	     data-toggle="tab">
+	    Updates
+	  </a>
+	</li>
+      </ul>
+
+      <div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="dois">
+	  <h3>By Publication Year</h3>
+	  <canvas id="dois-by-year-bar-chart">
+	  </canvas>
+
+	  <h3>By Content Type</h3>
+	  <canvas id="dois-by-type-bar-chart">
+	  </canvas>
+	  
+	  <table class="table">
+	    {% for f in member.flags %}
+	    <tr>
+	      <td>{{f.0}}</td>
+	      <td>{{f.1}}</td>
+	    </tr>
+	    {% endfor %}
+	  </table>
+	</div>
+
+	<div class="tab-content">
+	  <div role="tabpanel" class="tab-pane" id="coverage">
+	    <h3>Coverage</h3>
+	  </div>
+	</div>
+
+	<div role="tabpanel" class="tab-pane" id="prefixes">
+	  <table class="table">
+	    <tr>
+	      <th>Prefix</th>
+	      <th>Name</th>
+	      <th>Public Refs?</th>
+	    </tr>
+	    {% for p in member.prefix %}
+	    <tr>
+	      <td>{{p.value}}</td>
+	      <td>{{p.name}}</td>
+	      {% if p.public-references %}
+	      <td>Yes</td>
+	      {% else %}
+	      <td>No</td>
+	      {% endif %}
+	    </tr>
+	    {% endfor %}
+	  </table>
+	</div>
+	
+	<div role="tabpanel" class="tab-pane" id="funding">
+	  <table class="table">
+	    {% for f in funders %}
+	    <tr>
+	      <td>{{f.0}}</td>
+	      <td>{{f.1}}</td>
+	    </tr>
+	    {% endfor %}
+	  </table>
+	</div>
+
+	<div role="tabpanel" class="tab-pane" id="updates">
+	  <table class="table">
+	    {% for u in updates %}
+	    <tr>
+	      <td>{{u.0}}</td>
+	      <td>{{u.1}}</td>
+	    </tr>
+	    {% endfor %}
+	  </table>
+	</div>
+	
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  {% include "templates/member.js" %}
+</script>
+{% endblock %}

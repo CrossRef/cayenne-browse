@@ -1,0 +1,14 @@
+<table class="table">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>DOIs</th>
+  </tr>
+  {% for m in member-results %}
+  <tr>
+    <td>{{m.id}}</td>
+    <td><a href="/members/{{m.id}}">{{m.primary-name}}</a></td>
+    <td>{{m.counts.total-dois|number-format:%,d}}</td>
+  </tr>
+  {% endfor %}
+</table>

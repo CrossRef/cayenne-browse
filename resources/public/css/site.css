@@ -1,0 +1,51 @@
+body {
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+a {
+    color: #36a8c1;
+}
+
+.nav-item a {
+    color: #464e4e;
+}
+
+.nav-item a:hover {
+    background-color: #ffbf27 !important;
+}
+
+.lead-section {
+    background-color: #d8d3c3;
+    padding-left: 120px;
+    padding-right: 120px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.content-section {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.yellow {
+    color: #ffbf27;
+}
+
+.red {
+    color: #ed2c38;
+}
+
+.blue {
+    color: #36a8c1;
+}
+
+.dark-grey {
+    color: #464e4e;
+}
+
+.light-grey {
+    color: #d3ccbc;
+}

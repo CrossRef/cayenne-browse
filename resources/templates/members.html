@@ -1,0 +1,30 @@
+{% extends "templates/layout.html" %}
+
+{% block lead %}
+<h1 class="text-center">Members</h1>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="form-group">
+      <input id="member-search-input"
+	     class="form-control input-lg"
+  	     type="text"
+ 	     placeholder="Member name..."
+	     autofocus>
+      </input>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12" id="member-search-results">
+  </div>
+</div>
+
+<script>
+  {% include "templates/members.js" %}
+</script>
+{% endblock %}
+
