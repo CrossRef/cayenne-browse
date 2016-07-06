@@ -66,7 +66,7 @@
       </ul>
 
       <div class="tab-content">
-	<div role="tabpanel" class="tab-pane active" id="dois">
+	<div role="tabpanel" class="tab-pane active fade" id="dois">
 	  <h3>By Publication Year</h3>
 	  <canvas id="dois-by-year-bar-chart">
 	  </canvas>
@@ -85,13 +85,23 @@
 	  </table>
 	</div>
 
-	<div class="tab-content">
-	  <div role="tabpanel" class="tab-pane" id="coverage">
-	    <h3>Coverage</h3>
+	<div role="tabpanel" class="tab-pane fade" id="coverage">
+	  <div class="row">
+	    <div class="col-md-12">
+	      <h3></h3>
+	      <div class="alert alert-info">
+		<small>
+		  Coverage information last updated
+		  <strong>
+		    {{member.last-status-check-time|date:fullDateTime}}
+		  </strong>
+		</small>
+	      </div>
+	    </div>
 	  </div>
 	</div>
 
-	<div role="tabpanel" class="tab-pane" id="prefixes">
+	<div role="tabpanel" class="tab-pane fade" id="prefixes">
 	  <table class="table">
 	    <tr>
 	      <th>Prefix</th>
@@ -112,7 +122,7 @@
 	  </table>
 	</div>
 	
-	<div role="tabpanel" class="tab-pane" id="funding">
+	<div role="tabpanel" class="tab-pane fade" id="funding">
 	  <table class="table">
 	    {% for f in funders %}
 	    <tr>
@@ -123,7 +133,7 @@
 	  </table>
 	</div>
 
-	<div role="tabpanel" class="tab-pane" id="updates">
+	<div role="tabpanel" class="tab-pane fade" id="updates">
 	  <table class="table">
 	    {% for u in updates %}
 	    <tr>
