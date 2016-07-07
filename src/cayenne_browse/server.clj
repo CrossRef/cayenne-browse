@@ -21,7 +21,9 @@
 (defonce server (atom nil))
 
 (defn start []
-  (let [config {:port (or (env :server-port) 8080)
+  (let [config {:port (if (env :server-port)
+                        (Integer/parseInt (env :server-port))
+                        8080)
                 :thread (or (env :server-threads) 24)}]
     (reset! server (server/run-server #'site config))))
 
