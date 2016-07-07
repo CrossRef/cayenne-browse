@@ -34,27 +34,21 @@
     <div>
       <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active">
-	  <a href="#dois" aria-controls="dois" role="tab"
-	     data-toggle="tab">
-	    DOIs
-	  </a>
-	</li>
-	<li role="presentation">
 	  <a href="#coverage" aria-controls="coverage" role="tab"
 	     data-toggle="tab">
 	    Coverage
 	  </a>
 	</li>
 	<li role="presentation">
-	  <a href="#prefixes" aria-controls="prefixes" role="tab"
+	  <a href="#dois" aria-controls="dois" role="tab"
 	     data-toggle="tab">
-	    Prefixes
+	    DOIs
 	  </a>
 	</li>
 	<li role="presentation">
-	  <a href="#funding" aria-controls="funding" role="tab"
+	  <a href="#prefixes" aria-controls="prefixes" role="tab"
 	     data-toggle="tab">
-	    Funding Sources
+	    Prefixes
 	  </a>
 	</li>
 	<li role="presentation">
@@ -66,7 +60,7 @@
       </ul>
 
       <div class="tab-content">
-	<div role="tabpanel" class="tab-pane active fade" id="dois">
+	<div role="tabpanel" class="tab-pane fade" id="dois">
 	  <h3>By Publication Year</h3>
 	  <canvas id="dois-by-year-bar-chart">
 	  </canvas>
@@ -74,18 +68,9 @@
 	  <h3>By Content Type</h3>
 	  <canvas id="dois-by-type-bar-chart">
 	  </canvas>
-	  
-	  <table class="table">
-	    {% for f in member.flags %}
-	    <tr>
-	      <td>{{f.0}}</td>
-	      <td>{{f.1}}</td>
-	    </tr>
-	    {% endfor %}
-	  </table>
 	</div>
 
-	<div role="tabpanel" class="tab-pane fade" id="coverage">
+	<div role="tabpanel" class="tab-pane active" id="coverage">
 	  <div class="row">
 	    <div class="col-md-12">
 	      <h3></h3>
@@ -97,11 +82,212 @@
 		  </strong>
 		</small>
 	      </div>
+	      <h3>Published Last 2 Years</h3>
+	      
+	      <div class="row" style="margin-top: 50px;">
+		<div class="col-md-3">
+		  <p class="small">Funding Information</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.funders-current|percent}}%">
+		      {{member.coverage.funders-current|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">Award Numbers</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.award-numbers-current|percent}}%">
+		      {{member.coverage.award-numbers-current|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">License URLs</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.licenses-current|percent}}%">
+		      {{member.coverage.licenses-current|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">Reference Lists</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.references-current|percent}}%">
+		      {{member.coverage.references-current|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">Full-text URLs</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.resource-links-current|percent}}%">
+		      {{member.coverage.resource-links-current|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">ORCIDs</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.orcids-current|percent}}%">
+		      {{member.coverage.orcids-current|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">Crossmark</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.update-policies-current|percent}}%">
+		      {{member.coverage.update-policies-current|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+
+	      <h3>Published 2 or More Years Ago</h3>
+	      
+	      <div class="row" style="margin-top: 50px">
+		<div class="col-md-3">
+		  <p class="small">Funding Information</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.funders-backfile|percent}}%">
+		      {{member.coverage.funders-backfile|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">Award Numbers</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.award-numbers-backfile|percent}}%">
+		      {{member.coverage.award-numbers-backfile|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">License URLs</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.licenses-backfile|percent}}%">
+		      {{member.coverage.licenses-backfile|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">Reference Lists</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.references-backfile|percent}}%">
+		      {{member.coverage.references-backfile|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">Full-text URLs</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.resource-links-backfile|percent}}%">
+		      {{member.coverage.resource-links-backfile|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">ORCIDs</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.orcids-backfile|percent}}%">
+		      {{member.coverage.orcids-backfile|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	      <hr/>
+	      <div class="row">
+		<div class="col-md-3">
+		  <p class="small">Crossmark</p>
+		</div>
+		<div clas="col-md-9">
+		  <div class="progress">
+		    <div class="progress-bar"
+			 style="width: {{member.coverage.update-policies-backfile|percent}}%">
+		      {{member.coverage.update-policies-backfile|percent|number-format:%.2f}}%
+		    </div>
+		  </div>
+		</div>
+	      </div>
+
 	    </div>
 	  </div>
 	</div>
 
 	<div role="tabpanel" class="tab-pane fade" id="prefixes">
+	  <h3>DOI Prefixes</h3>
 	  <table class="table">
 	    <tr>
 	      <th>Prefix</th>
@@ -121,25 +307,19 @@
 	    {% endfor %}
 	  </table>
 	</div>
-	
-	<div role="tabpanel" class="tab-pane fade" id="funding">
-	  <table class="table">
-	    {% for f in funders %}
-	    <tr>
-	      <td>{{f.0}}</td>
-	      <td>{{f.1}}</td>
-	    </tr>
-	    {% endfor %}
-	  </table>
-	</div>
 
 	<div role="tabpanel" class="tab-pane fade" id="updates">
+	  <h3>Significant Updates</h3>
 	  <table class="table">
 	    {% for u in updates %}
 	    <tr>
 	      <td>{{u.0}}</td>
 	      <td>{{u.1}}</td>
 	    </tr>
+	    {% empty %}
+	    <p class="text-center" style="margin-top: 40px;">
+	      {{member.primary-name}} has not deposited significant updates.
+	    </p>
 	    {% endfor %}
 	  </table>
 	</div>

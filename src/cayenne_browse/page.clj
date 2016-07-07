@@ -17,7 +17,9 @@
 
 ;; General filters for all templates
 
-(add-filter! :mapnth (fn [m n] (map #(nth % (Integer/parseInt n)) m))) 
+(add-filter! :mapnth (fn [m n] (map #(nth % (Integer/parseInt n)) m)))
+
+(add-filter! :percent #(double (* 100 %)))
 
 (add-filter! :keys keys)
 
